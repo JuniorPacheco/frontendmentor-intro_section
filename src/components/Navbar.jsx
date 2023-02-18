@@ -1,20 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Navbar = () => {
+
+  const [isShowAside, setIsShowAside] = useState(false)
+  const [isShowFeatures, setIsShowFeatures] = useState(false)
+
+  const handleChangeAside = () => {
+    setIsShowAside(!isShowAside)
+  }
+
+  const handleChangeFeatures = () => {
+    setIsShowFeatures(!isShowFeatures)
+  }
+
   return (
     <nav className='flex justify-between items-center px-4 py-4'>
       <h1 className='text-4xl font-bold'>snap</h1>
-      <img className='h-5' src="/images/icon-menu.svg" alt="" />
-      <section className='bg-black text-medium-gray absolute top-0 min-h-screen left-0 right-0'>
-        <aside className='bg-almost-white absolute right-0 w-[260px] pt-20 px-8 min-h-screen'>
+      <img onClick={handleChangeAside} className='h-5 cursor-pointer' src="/images/icon-menu.svg" alt="" />
+      <section className={`bg-transparent-black ${isShowAside ? "animate-fadeInBg" : "animate-fadeOutBg"} text-medium-gray fixed top-0 min-h-screen left-0 right-0`}>
+        <aside className={`bg-almost-white ${isShowAside ? "animate-fadInAside" : "animate-fadOutAside"} absolute right-0 w-[260px] pt-20 px-8 h-screen overflow-y-auto`}>
 
-          <img className='absolute top-4 right-4' src="/images/icon-close-menu.svg" alt="" />
+          <img onClick={handleChangeAside} className='absolute top-4 right-4 cursor-pointer' src="/images/icon-close-menu.svg" alt="" />
 
-          <section>
+          <section className={`${isShowFeatures ? "h-auto" : "h-8"} transition-height duration-200 overflow-hidden`}>
             <div className='flex gap-4 items-center'>
               <h3>Features</h3>
               <div>
-                <img src="/images/icon-arrow-up.svg" alt="" />
+                <img className='cursor-pointer' onClick={handleChangeFeatures} src="/images/icon-arrow-up.svg" alt="" />
               </div>
             </div>
             <ul className='pl-6 my-6 flex flex-col gap-4'>
@@ -47,7 +59,7 @@ const Navbar = () => {
 
           <section>
             <div className='flex gap-4 items-center'>
-              <h3>Features</h3>
+              <h3>Company</h3>
               <img src="/images/icon-arrow-up.svg" alt="" />
             </div>
             <ul className='pl-6 my-6 flex flex-col gap-4'>
