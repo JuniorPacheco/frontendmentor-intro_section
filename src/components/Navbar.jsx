@@ -4,6 +4,7 @@ const Navbar = () => {
 
   const [isShowAside, setIsShowAside] = useState(false)
   const [isShowFeatures, setIsShowFeatures] = useState(false)
+  const [isShowCompany, setIsShowCompany] = useState(false)
 
   const handleChangeAside = () => {
     setIsShowAside(!isShowAside)
@@ -11,6 +12,10 @@ const Navbar = () => {
 
   const handleChangeFeatures = () => {
     setIsShowFeatures(!isShowFeatures)
+  }
+
+  const handleChangeShowCompany = () => {
+    setIsShowCompany(!isShowCompany)
   }
 
   return (
@@ -57,10 +62,10 @@ const Navbar = () => {
             </ul>
           </section>
 
-          <section>
+          <section className={`${isShowCompany ? "h-auto" : "h-8"} overflow-hidden`}>
             <div className='flex gap-4 items-center'>
               <h3>Company</h3>
-              <img src="/images/icon-arrow-up.svg" alt="" />
+              <img onClick={handleChangeShowCompany} className="cursor-pointer" src="/images/icon-arrow-up.svg" alt="" />
             </div>
             <ul className='pl-6 my-6 flex flex-col gap-4'>
               <li>
